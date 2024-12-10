@@ -1,9 +1,7 @@
 #include <iostream>
-
+#include <sculptor.h>
 using namespace std;
 
-int main()
-{
-    cout << "Hello World!" << endl;
-    return 0;
+int main(){
+    Sculptor teste(2,3,3);
 }
