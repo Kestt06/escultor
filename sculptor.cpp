@@ -1,4 +1,5 @@
 #include "sculptor.h"
+#include <iostream>
 
 Sculptor::Sculptor(int _nx, int _ny, int _nz){
     int i,j;
