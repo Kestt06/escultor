@@ -1,7 +1,7 @@
 #include "sculptor.h"
 #include <iostream>
 
-Sculptor::Sculptor(int _nx, int _ny, int _nz){
+Sculptor::Sculptor(int _nx, int _ny, int _nz){ //construtor
     int i,j;
     nx = _nx; ny= _ny; nz= _nz;
 
@@ -13,10 +13,9 @@ Sculptor::Sculptor(int _nx, int _ny, int _nz){
             v[i][j] = new Voxel[nz];
         }
     }
-
 }
 
-Sculptor::~Sculptor(){
+Sculptor::~Sculptor(){ //destrutor
     int i,j;
     for (i=0;i<nx;i++){
         for (j=0;j<ny;j++){
@@ -26,4 +25,11 @@ Sculptor::~Sculptor(){
     }
 
     delete[] v;
+}
+
+void Sculptor::setColor(float r, float g, float b, float alpha){
+    this->r = r;
+    this->g = g;
+    this->b = b;
+    a = alpha;
 }

@@ -4,5 +4,6 @@ using namespace std;
 
 int main(){
     Sculptor teste(2,3,3);
-    std::cout << "teste2";
+    teste.setColor(1,1,1,0.5);
 }
+
