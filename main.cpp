@@ -5,5 +5,6 @@ using namespace std;
 int main(){
     Sculptor teste(2,3,3);
     teste.setColor(1,1,1,0.5);
+    teste.putVoxel(0,0,0);
 }
 
