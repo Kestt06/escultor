@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <iomanip>
+#include <cmath>
 
 Sculptor::Sculptor(int _nx, int _ny, int _nz){ //construtor da classe
     int i,j,k;
@@ -174,3 +175,39 @@ void Sculptor::cutBox(int x0, int x1, int y0, int y1, int z0, int z1){
     }
 }
 
+void Sculptor::putSphere(int xcenter, int ycenter, int zcenter, int radius){
+    int i,j,k;
+    float dCenter; //distancia de um ponto ao centro da esfera
+
+    //considerando os limites de um quadrado em que a circunferencia esta dentro
+    for (i = xcenter-radius ; i< xcenter +radius +1; i++){
+        for (j = ycenter-radius ; j< ycenter +radius +1; j++){
+            for (k = zcenter-radius ; k< zcenter +radius +1; k++){
+                dCenter = sqrt( (i-xcenter)*(i-xcenter) + (j-ycenter)*(j-ycenter) + (k-zcenter)*(k-zcenter));
+                    if (dCenter <= radius){
+                    Sculptor::putVoxel(i,j,k);
+                }
+            }
+        }
+    }
+}
+
+void Sculptor::cutSphere(int xcenter, int ycenter, int zcenter, int radius){
+    int i,j,k;
+    float dCenter; //distancia de um ponto ao centro da esfera
+
+    //considerando os limites de um quadrado em que a circunferencia esta dentro
+    for (i = xcenter-radius ; i< xcenter +radius +1; i++){
+        for (j = ycenter-radius ; j< ycenter +radius +1; j++){
+            for (k = zcenter-radius ; k< zcenter +radius +1; k++){
+                dCenter = sqrt( (i-xcenter)*(i-xcenter) + (j-ycenter)*(j-ycenter) + (k-zcenter)*(k-zcenter));
+                if (dCenter <= radius){
+                    Sculptor::cutVoxel(i,j,k);
+                }
+            }
+        }
+    }
+}
+
+void Sculptor::putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz){
+}
