@@ -4,12 +4,12 @@
 #include <fstream>
 #include <iomanip>
 
-Sculptor::Sculptor(int _nx, int _ny, int _nz){ //construtor
+Sculptor::Sculptor(int _nx, int _ny, int _nz){ //construtor da classe
     int i,j,k;
     nx = _nx; ny= _ny; nz= _nz;
 
+    //alocacao do espaco para a matriz na memoria
     v = new Voxel**[nx];
-
     for (i=0;i<nx;i++){
         v[i] = new Voxel*[ny];
             for(j=0;j<ny;j++){
@@ -34,7 +34,6 @@ Sculptor::~Sculptor(){ //destrutor
         }
         delete[] v[i];
     }
-
     delete[] v;
 }
 
@@ -46,18 +45,20 @@ void Sculptor::setColor(float r, float g, float b, float alpha){
 }
 
 void Sculptor::putVoxel(int x, int y, int z){
+    //testando se o voxel escolhido esta na posicao correta
     if (x >= nx || x<0){
-        std::cout << "voxel em posicao invalida" << std::endl;
+       std::cout << "voxel em posicao invalida" << std::endl;
         return;
     }
      if (y >= ny || y<0){
-        std::cout << "voxel em posicao invalida" << std::endl;
+       std::cout << "voxel em posicao invalida" << std::endl;
         return;
     }
     if (z >= nz || z<0){
-        std::cout << "voxel em posicao invalida" << std::endl;
+       std::cout << "voxel em posicao invalida" << std::endl;
         return;
     }
+
    //criando voxel
     v[x][y][z].show = 1;
     v[x][y][z].r = this->r;
@@ -81,8 +82,11 @@ void Sculptor::writeOFF(const char *filename){
             }
         }
     }
+
+    //quantidade de faces e vertices total
     faces = 6 * contagem;
     vertices = 8 * contagem;
+
     //etapa de criacao do arquivo
     std::ofstream fout;
     fout.open(filename);
@@ -91,9 +95,11 @@ void Sculptor::writeOFF(const char *filename){
         exit(1);
     }
 
+    //cabecalho do arquivo
     fout << "OFF\n";
     fout << vertices << " " << faces << " " << "0" << std::endl;
-    //escrevendo pontos
+
+    //escrevendo os pontos no arquivo
     for(i=0;i<nx;i++){
         for(j=0;j<ny;j++){
             for(k=0;k<nz;k++){
@@ -103,15 +109,15 @@ void Sculptor::writeOFF(const char *filename){
                     fout << i - 0.5 << " " << j - 0.5 << " " << k - 0.5 << std::endl;
                     fout << i + 0.5 << " " << j - 0.5 << " " << k - 0.5 << std::endl;
                     fout << i + 0.5 << " " << j + 0.5 << " " << k - 0.5 << std::endl;
-                    fout << i - 0.5 << " " << j + 0.5 << " " << + + 0.5 << std::endl;
+                    fout << i - 0.5 << " " << j + 0.5 << " " << k + 0.5 << std::endl;
                     fout << i - 0.5 << " " << j - 0.5 << " " << k + 0.5 << std::endl;
                     fout << i + 0.5 << " " << j - 0.5 << " " << k + 0.5 << std::endl;
                     fout << i + 0.5 << " " << j + 0.5 << " " << k + 0.5 << std::endl;
-                    //faces
                 }
             }
         }
     }
+    //escrevendo as faces no arquivo
     for(i=0;i<nx;i++){
         for(j=0;j<ny;j++){
             for(k=0;k<nz;k++){
@@ -140,4 +146,8 @@ void Sculptor::writeOFF(const char *filename){
     }
 fout.close();
 std::cout << "Arquivo criado!" << std::endl;
+}
+
+void Sculptor::cutVoxel(int x, int y, int z){
+    v[x][y][z].show = 0;
 }
