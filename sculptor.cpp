@@ -151,3 +151,26 @@ std::cout << "Arquivo criado!" << std::endl;
 void Sculptor::cutVoxel(int x, int y, int z){
     v[x][y][z].show = 0;
 }
+
+void Sculptor::putBox(int x0, int x1, int y0, int y1, int z0, int z1){
+    int i,j,k;
+    for (i=x0;i<x1+1;i++){
+        for (j=y0;j<y1+1;j++){
+            for (k=z0;k<z1+1;k++){
+                Sculptor::putVoxel(i,j,k);
+            }
+        }
+    }
+}
+
+void Sculptor::cutBox(int x0, int x1, int y0, int y1, int z0, int z1){
+    int i,j,k;
+    for (i=x0;i<x1+1;i++){
+        for (j=y0;j<y1+1;j++){
+            for (k=z0;k<z1+1;k++){
+                Sculptor::cutVoxel(i,j,k);
+            }
+        }
+    }
+}
+
