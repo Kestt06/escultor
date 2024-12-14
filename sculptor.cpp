@@ -210,4 +210,41 @@ void Sculptor::cutSphere(int xcenter, int ycenter, int zcenter, int radius){
 }
 
 void Sculptor::putEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz){
+int i,j,k;
+float x,y,z; //usado pra calcular a equacao da elipse
+float equ; //equacao da elipse
+for (i = xcenter-rx ; i< xcenter +rx +1; i++){
+    for (j = ycenter-ry ; j< ycenter +ry +1; j++){
+        for (k = zcenter-rz ; k< zcenter +rz +1; k++){
+            x=i-xcenter;
+            y=j-ycenter;
+            z=k-zcenter;
+            equ = ((x*x)/(rx*rx)) + ((y*y)/(ry*ry)) + ((z*z)/(rz*rz));
+            std::cout << equ << " ";
+            if (equ <= 1){
+                Sculptor::putVoxel(i,j,k);
+            }
+        }
+    }
+}
+}
+
+void Sculptor::cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int ry, int rz){
+    int i,j,k;
+    float x,y,z; //usado pra calcular a equacao da elipse
+    float equ; //equacao da elipse
+    for (i = xcenter-rx ; i< xcenter +rx +1; i++){
+        for (j = ycenter-ry ; j< ycenter +ry +1; j++){
+            for (k = zcenter-rz ; k< zcenter +rz +1; k++){
+                x=i-xcenter;
+                y=j-ycenter;
+                z=k-zcenter;
+                equ = ((x*x)/(rx*rx)) + ((y*y)/(ry*ry)) + ((z*z)/(rz*rz));
+                std::cout << equ << " ";
+                if (equ <= 1){
+                    Sculptor::cutVoxel(i,j,k);
+                }
+            }
+        }
+    }
 }
