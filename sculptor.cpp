@@ -48,15 +48,12 @@ void Sculptor::setColor(float r, float g, float b, float alpha){
 void Sculptor::putVoxel(int x, int y, int z){
     //testando se o voxel escolhido esta na posicao correta
     if (x >= nx || x<0){
-       std::cout << "voxel em posicao invalida" << std::endl;
         return;
     }
      if (y >= ny || y<0){
-       std::cout << "voxel em posicao invalida" << std::endl;
         return;
     }
     if (z >= nz || z<0){
-       std::cout << "voxel em posicao invalida" << std::endl;
         return;
     }
 
@@ -220,7 +217,6 @@ for (i = xcenter-rx ; i< xcenter +rx +1; i++){
             y=j-ycenter;
             z=k-zcenter;
             equ = ((x*x)/(rx*rx)) + ((y*y)/(ry*ry)) + ((z*z)/(rz*rz));
-            std::cout << equ << " ";
             if (equ <= 1){
                 Sculptor::putVoxel(i,j,k);
             }
@@ -240,7 +236,6 @@ void Sculptor::cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx, int r
                 y=j-ycenter;
                 z=k-zcenter;
                 equ = ((x*x)/(rx*rx)) + ((y*y)/(ry*ry)) + ((z*z)/(rz*rz));
-                std::cout << equ << " ";
                 if (equ <= 1){
                     Sculptor::cutVoxel(i,j,k);
                 }
