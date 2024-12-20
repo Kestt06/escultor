@@ -27,3 +27,4 @@ public:
     void writeOFF(const char* filename);
 };
 #endif // SCULPTOR_H
+
