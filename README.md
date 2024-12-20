@@ -1,3 +1,3 @@
 # Escultor 3D
 
-O projeto consiste na implementação de uma classe em C++ que permite fazer esculturas 3d com blocos.
+Projeto da disciplina DCA0803 que consiste na implementação de uma classe em C++ para criar esculturas 3D com voxels.
